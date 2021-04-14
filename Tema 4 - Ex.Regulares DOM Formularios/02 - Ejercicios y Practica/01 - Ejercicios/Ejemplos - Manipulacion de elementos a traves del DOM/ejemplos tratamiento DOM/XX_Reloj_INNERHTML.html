@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			function reloj()
+			{
+				var today=new Date();
+				var h=today.getHours();
+				var m=today.getMinutes();
+				var s=today.getSeconds();
+				m=aniadirCero(m);// añade un cero si los minutos <10
+				s=aniadirCero(s);// añade un cero si los segundos <10
+				document.getElementById('txt').innerHTML=h+":"+m+":"+s;
+				t=setTimeout('reloj()',1000);
+			}
+			function aniadirCero(i)
+			{
+				if (i<10)
+  				{
+  					i="0" + i;
+  				}
+				return i;
+			}
+		</script>
+	</head>
+	<body onload="reloj()">
+		
+		<div id="txt"></div>
+	</body>
+</html>

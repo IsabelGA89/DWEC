@@ -1,0 +1,29 @@
+<!--resaltamos los elementos conforme pasamos el ratón sobre ellos-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			
+		</script>
+	</head>
+	<body>
+		
+		<div id="elementos">
+			<h2>Lista de la compra</h2>
+			<ul>
+				<li onMouseOver="resaltar(this);">Leche</li>
+				<li onMouseOver="resaltar(this);">Pan</li>
+				<li onMouseOver="resaltar(this);">Azucar</li>
+				<li onMouseOver="resaltar(this);">Fruta</li>
+			</ul>
+			
+			
+		</div>
+	
+		<script>
+			function resaltar(elemento){
+				elemento.style.color="red";
+		}
+		</script>
+	</body>
+</html>

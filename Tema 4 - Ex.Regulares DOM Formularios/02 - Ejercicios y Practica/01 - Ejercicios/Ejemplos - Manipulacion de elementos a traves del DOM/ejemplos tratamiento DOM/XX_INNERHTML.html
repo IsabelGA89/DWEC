@@ -1,0 +1,24 @@
+<!-- Con la propiedad innerHTML podemos leer y modificar el contenido HTML de un elemento-->
+<!DOCTYPE html>
+<html>
+	<head>
+		<script>
+			
+		</script>
+	</head>
+	<body>
+		<p id="parrafo">Hola</p>
+		<ul id="lista">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+		</ul>
+	
+		<script>
+			var nombre=prompt("dime nombre");
+            document.getElementById("parrafo").innerHTML=document.getElementById("parrafo").innerHTML + "&nbsp;" + nombre;
+            alert(document.getElementById("lista").innerHTML);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <title>Códigos postales</title>
+<style>
+textarea, input{
+    display: block;    
+    margin: 10px;
+}
+    
+textarea{
+    width: 200px;
+    height: 150px;
+    background-color: RGB(230,230,230);
+}   
+    
+</style>
+</head>
+<body onload="cargarDatos()">
+<script>
+    //La regla es que el código postal debe constar de 5 números y se utiliza la representación literal
+    //ya que el patrón no va a cambiar a lo largo de la ejecución.
+    //Representación literal:
+    var regexp_cp = /^[0-9]{5}$/;
+    //Con la función constructora del objeto RegExp
+    var regexp_cp_espanya = new RegExp('0[1-9][0-9]{3}|[1-4][0-9]{4}|5[0-2][0-9]{3}');
+
+
+    function cargarDatos(){
+        let ta = document.getElementById("codigos"); 
+        let datos = "";
+        datos += "50101\n";
+        datos += "601012\n";
+        datos += "7232\n";
+        datos += "73232\n";
+        datos += "95521\n";
+        datos += "959a3";
+        ta.value = datos;
+    }
+    
+    function getDatos(){
+        let contenido, datos;
+        contenido = document.getElementById("codigos").value;
+        /* en la variable contenido esta alamacenado todo el texto
+           del text area incluido el salto de línea \n */
+        datos = contenido.split("\n");
+        /* con el método split vamos a convertir el contenido en un array utilizando como separador el salto de línea \n */
+                
+        return datos;
+    }
+    
+    function validar(){
+        //Obtenemos el array con los datos:
+       var arr_datos = getDatos();
+       var arr_datos_validados = [];
+       //recorremos el array y guardamos los elementos que cumplan la Expresion regular:
+        for (let i = 0; i < arr_datos.length; i++) {
+            if(regexp_cp.test(arr_datos[i])){
+                //si entra es que el elemento cumple la regla
+                arr_datos_validados.push(arr_datos[i]);
+            }
+        }
+        if(arr_datos_validados.length >= 1){
+            document.getElementById("codigos_validos").value = arr_datos_validados;
+        }else{
+            document.getElementById("codigos_validos").value = "Ninguno de los datos aportados cumple la regla de sintaxis de un CP de 5 números";
+        }
+
+
+
+    }
+    
+</script>  
+  <div class="container">
+      <h1>Validación de Códigos Postales:</h1>
+   <div class="jumbotron form-inline" style="background-color: lightpink">
+       <div>
+           <label>Códigos a valorar:</label>
+           <textarea id="codigos"></textarea>
+       </div>
+       <div>
+           <input class="btn btn-dark" type="button" value="validar" onclick="validar()">
+       </div>
+       <div>
+           <label>Códigos Válidos:</label>
+           <textarea readonly  id="codigos_validos"></textarea>
+       </div>
+
+  </div>
+  </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+<footer class="page-footer font-small">
+    <div class="footer-copyright text-center py-3">
+        © 2021 Copyright
+        Isabel González Anzano
+    </div>
+</footer>

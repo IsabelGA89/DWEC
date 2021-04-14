@@ -1,0 +1,23 @@
+// Teléfono: 123456789 var patronTelefono= /^\d{9}$/;
+
+//Matrícula: 1234 ABC var patronMatricula=/^\d{4} [A-Z]{3}$/;
+
+
+
+- Código postal (para España, de 5 dígitos): ^\d{5}$
+
+- Documento de identificación (en España, DNI o NIE): ^[\w\d]\d{7}\w$
+
+- Número de teléfono (para España, de 9 dígitos: ^\d{9}$
+
+- Sólo correos electrónicos de Gmail: [^ ]*@gmail\.com$
+
+- Sólo los números 30, 31 o 32: ^30$|^31$|^32$
+
+- Sólo letras, número y espacios (sin caracteres especiales): ^[a-zA-Z0-9]+$
+
+- Limitar número de caracteres (mínimo de 1 y máximo de 10): ^[\s\S]{1,10}$
+
+- Números con dos decimales, en caso de desear separar decimales con coma sustituir el punto de la fómula: ^-?\d*\.\d{2}$
+
+- Porcentaje del 0 al 100 con dos decimales opcionales y el signo % al final opcional: ^-?[0-9]{0,2}(\,[0-9]{1,2})?%?$|^-?(100)(\,[0]{1,2})?%?$

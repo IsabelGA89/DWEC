@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>JavaScript Fechas</title>
+</head>
+<body>
+	<script> 
+		var miFecha=new Date()
+        
+        miFecha.setFullYear(2016,10,14);/* //fija la fecha a 14 de octubre de 2016
+            miFecha.setDate(myDate.getDate()+5); //aumenta la fecha             guardada en 5 días*/
+
+            
+        var hoy = new Date();
+        //comparamos las fechas
+        if (miFecha>hoy)
+        {
+	       alert("Hoy es antes del " + miFecha.getFullYear() + " / " + miFecha.getMonth() +  " / " + miFecha.getDate());
+        } 
+        else
+        {
+	       alert("Hoy es despues del " + miFecha.getFullYear());
+        }
+	</script>
+</body>
+</html>

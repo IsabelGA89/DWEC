@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<script>
+		function nuevaURL(){
+			var url=document.getElementById("txtURL").value;
+			window.frames[0].window.location.replace(url);
+		
+		}
+	</script>
+
+
+</head>
+<body>
+	<div id="datos">
+		<p>Introduce la dirección
+			<label>Direccoón URL: </label>
+			<input type="text" id="txtURL" />
+		</p>
+		<p>
+			<button id="actualizar" onClick="nuevaURL();">Actualizar</button>
+		</p>
+		<iframe name="paginaWeb" height="600" width="800">
+	</div>
+
+</body>
+</html>

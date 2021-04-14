@@ -1,0 +1,28 @@
+ <!--Primera imagen adquiere un borde azul de 10 píxeles de grosor, 
+ la segunda imagen un borde rojo del mismo grosor y el texto del link queda de color gris.
+ La sintaxis window.document.images[1] o simplemente document.images[1] nos da acceso a la segunda imagen existente en el documento HTML.-->
+ 
+ <html><head><title></title><meta charset="utf-8">
+
+<script type="text/javascript">
+
+function ejemplo() {
+    for (var i=0; i<document.images.length;i++)
+        alert(document.images[i].src);
+    }
+
+</script>
+
+</head>
+
+<body><div id="cabecera"><h2>Ejemplos JavaScript</h2></div>
+
+<div style="color:blue; margin:20px;" id ="pulsador" onclick="ejemplo()"><a href="#"> Probar</a> </div>
+
+<img name="a" src="http://i.imgur.com/afC0L.jpg" alt="Notepad++" title="Notepad++, un útil editor de texto" />
+
+<img src="http://www.crimsoneditor.com/images/logo.jpg" alt="Crimson" title="Crimson, un editor de texto alternativo" />
+
+</body>
+</html>
+

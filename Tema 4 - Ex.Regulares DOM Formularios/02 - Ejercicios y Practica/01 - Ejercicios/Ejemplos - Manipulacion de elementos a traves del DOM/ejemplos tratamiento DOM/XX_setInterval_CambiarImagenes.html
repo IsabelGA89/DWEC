@@ -1,0 +1,32 @@
+<!--Abrimos una ventana nueva y se desplazará aleatoriamente -->
+<!DOCTYPE html>
+<html>
+<header>
+<meta charset="utf-8"/>
+
+</header>
+
+<body>
+
+<script>
+	var imgActual = 0;
+	var listaImg = new Array('img/koala.jpg', 'img/faro.jpg','img/medusa.jpg')
+
+	function cambiarImagenes( ){
+
+		document.images['anim'].src = listaImg[imgActual];
+		imgActual++;
+		if (imgActual == listaImg.length){
+			imgActual = 0;
+		}
+	}
+	
+	//timer = setInterval("cambiarImagenes()", 3000);;
+	setInterval("cambiarImagenes()", 3000);
+
+</script>
+
+<img src="img/koala.jpg" name="anim" alt="" width=200px height=200px />
+<button onclick="cambiarImagenes();">Cambisar imagenes</button>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="/css/style.css">-->
+    <title>DOM</title>
+</head>
+<header>
+    <h1>DOM</h1>
+</header>
+<body onload="mostrar_mensaje_aviso()">
+<div class="container">
+    <h1>DOM</h1>
+    <div class="jumbotron">
+        <p>Web elimina texto cuando se carga la página </p>
+        <pre>
+          Crear una página web en la que aparezca un texto.
+            Cuando la página se haya cargado, aparecerá un mensaje avisando de que se va a borrar el texto.
+            Una vez que se haya borrado el texto, aparecerá otro mensaje indicando que se ha borrado el texto.
+        </pre>
+        <div style="background-color: lightpink">
+            <script>
+                document.getElementById("hidden").addEventListener("focus", myFunction);
+
+            function mostrar_mensaje_aviso(){
+                alert("Se ha terminado de cargar la página \nSe va a eliminar el texto de la misma.");
+                eliminar_contenido("contenedor_texto","texto");
+                mensaje_contenido_eliminado();
+            }
+
+            function mensaje_contenido_eliminado(){
+                /*if(!isInPage("texto")){*/
+                    alert("Contenido eliminado.Gracias");
+                /*}*/
+            }
+
+            //GENERICOS:
+            //Permite saber si un elemento existe en la página
+            function isInPage(node) {
+                return (node === document.body) ? false : document.body.contains(node);
+            }
+            //Elimina el elemento dentro de un contenedor.
+            function eliminar_contenido(contenedor,elemento){
+                var top = document.getElementById(contenedor);
+                var nested = document.getElementById(elemento);
+                var garbage = top.removeChild(nested);
+            }
+            //Pone el foco en un elemento indicado como parametro
+            function foco(idElemento){
+                document.getElementById(idElemento).focus();
+                console.log("añadido el foco al elemento: "+idElemento);
+            }
+
+            //machaca el texto.
+                function eliminaTexto() {
+                    alert("Se va a eliminar el texto de la página");
+                    document.getElementById("texto").innerHTML = "Nuevo texto";
+                    alert("Texto machacado");
+                }
+
+            </script>
+
+            <div id="contenedor_texto">
+                <p id="texto">Texto de prueba que se eliminará cuando la web Haya terminado de cargarse.</p>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small">
+    <div class="footer-copyright text-center py-3">© 2021 Copyright
+        Isabel González Anzano
+    </div>
+</footer>
+<!-- Footer -->

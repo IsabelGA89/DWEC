@@ -1,0 +1,43 @@
+<!--Abrimos una ventana nueva y se desplazará aleatoriamente -->
+<!DOCTYPE html>
+<html>
+<header>
+<meta charset="utf-8"/>
+
+</header>
+
+<body>
+
+<script>
+	var movimientos=1;
+	var miVentana;
+	
+	idIntervalo=setInterval(moverVentana,2000);
+	
+	function moverVentana(){
+				
+		var y=Math.round(window.outerHeight*Math.random());
+		var x=Math.round(window.outerWidth*Math.random());
+		miVentana.moveTo(x,y);
+		miVentana.document.write("Coordenadas x:" + x + ", y: " + y + "<br>"); 
+		movimientos++;
+		if (movimientos>8)
+		{
+			clearInterval(idIntervalo);
+			miVentana.close();
+		}
+	
+	}
+
+	function ventana(){
+		miVentana=window.open("","","left=10, top=10, width=300, height=200");
+		moverVentana();	
+	}
+	
+	
+</script>
+
+Uso de moveTo() y setInterval()
+<button onclick="ventana();">Mover ventana</button>
+</body>
+</html>

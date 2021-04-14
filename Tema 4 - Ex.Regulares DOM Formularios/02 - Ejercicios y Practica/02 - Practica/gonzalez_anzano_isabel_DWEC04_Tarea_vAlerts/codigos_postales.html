@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <title>Códigos postales</title>
+<style>
+textarea, input{
+    display: block;    
+    margin: 10px;
+}
+    
+textarea{
+    width: 200px;
+    height: 150px;
+    background-color: RGB(230,230,230);
+}   
+ .hidden{
+     display: none;
+ }
+ .visible{
+     display: inline-flex !important;
+ }
+</style>
+</head>
+<body onload="cargarDatos()">
+<script>
+
+    //La regla es que el código postal debe constar de 5 números y se utiliza la representación literal
+    //ya que el patrón no va a cambiar a lo largo de la ejecución.
+    //Representación literal:
+    var regexp_cp = /^[0-9]{5}$/;
+    //Con la función constructora del objeto RegExp
+    var regexp_cp_espanya = new RegExp('0[1-9][0-9]{3}|[1-4][0-9]{4}|5[0-2][0-9]{3}');
+    var contador_error = 0;
+
+    function cargarDatos(){
+        let ta = document.getElementById("codigos"); 
+        let datos = "";
+        datos += "50101\n";
+        datos += "601012\n";
+        datos += "7232\n";
+        datos += "73232\n";
+        datos += "95521\n";
+        datos += "959a3";
+        ta.value = datos;
+    }
+    function getDatos(){
+        let contenido, datos;
+        contenido = document.getElementById("codigos").value;
+        /* en la variable contenido esta alamacenado todo el texto
+           del text area incluido el salto de línea \n */
+        datos = contenido.split("\n");
+        /* con el método split vamos a convertir el contenido en un array utilizando como separador el salto de línea \n */
+
+        return datos;
+    }
+
+    //Deja los valores de los alerts y sus p a 0
+    function reset_alerts(){
+       var arr_alerts = document.getElementsByName("mi_alert");
+       var arr_parrafos = document.getElementsByName("mi_parrafo");
+
+        for (let i = 0; i < arr_alerts.length; i++) {
+            var elemento = arr_alerts[i];
+            //ocultamos el div
+            elemento.className = "hidden";
+        }
+        for (let j = 0; j < arr_parrafos.length; j++) {
+            var parrafo = arr_parrafos[j];
+            //ponemos el valor del párrafo a vacío.
+            parrafo.innerHTML = "";
+        }
+
+    }
+
+    function mostrar_informacion(mensaje,tipo){
+        switch (tipo){
+            case "info":
+                var infoText = document.getElementById("info");
+                var infoContainer = document.getElementById("info_div");
+                //Añadimos las clases
+                reset_alerts();
+                infoContainer.className = "visible";
+                infoContainer.className += " alert alert-info";
+                //Se añade el mensaje
+                infoText.innerHTML = mensaje+"<br/>";
+                break;
+            case "danger":
+                var dangerText = document.getElementById("danger");
+                var dangerContainer = document.getElementById("danger_div");
+
+                dangerContainer.className = "visible";
+                dangerContainer.className += " alert alert-danger";
+                dangerText.innerHTML = mensaje+"<br/>";
+                break;
+            case "warning":
+                var warningText = document.getElementById("warning");
+                var warningContainer = document.getElementById("warning_div");
+
+                warningContainer.className = "visible";
+                warningContainer.className += " alert alert-warning";
+                warningText.innerHTML = mensaje+"<br/>";
+                break;
+            case "success":
+                var successText = document.getElementById("success");
+                var successContainer = document.getElementById("success_div");
+                successContainer.className = "visible";
+                successContainer.className += " alert alert-success";
+                successText.innerHTML = mensaje+"<br/>";
+                break;
+        }
+
+
+
+    }
+
+
+    function validar(){
+       var arr_datos = getDatos();
+       var arr_datos_validados = [];
+
+       var text2 = document.getElementById("texto_label_codigos_validos");
+       var text_codigos_validos = document.getElementById("codigos_validos");
+
+       //Primero borramos los datos que hubiese en el textarea:
+        text_codigos_validos.value = "";
+
+
+        //Comprobar que los datos del text area no estén vacíos:
+        if(arr_datos[0].length === 0){
+            reset_alerts();
+            mostrar_informacion("ERROR - No se han introducido datos para comprobar.","danger");
+            return 0;
+        }
+
+        //recorremos el array y guardamos los elementos que cumplan la Expresion regular:
+        for (let i = 0; i < arr_datos.length; i++) {
+            if(regexp_cp.test(arr_datos[i])){
+                //si entra es que el elemento cumple la regla
+                arr_datos_validados.push(arr_datos[i]);
+            }
+        }
+        if(arr_datos_validados.length >= 1){
+            text_codigos_validos.value = arr_datos_validados;
+            text2.innerHTML = "<label style='color: green'>CÓDIGOS VÁLIDOS.</label>";
+            limpiar();
+            mostrar_informacion("Códigos validados correctamente.","success");
+        }else{
+            reset_alerts();
+            //document.getElementById("codigos_validos").value = "Ninguno de los datos aportados cumple la regla de sintaxis de un CP de 5 números";
+            mostrar_informacion("ERROR - Ninguno de los datos aportados cumple la regla de sintaxis.","danger");
+            contador_error++;
+        }
+
+        if(contador_error === 0){
+            mostrar_informacion("Operación realizada correctamente.","info");
+        }
+
+    }
+    //limpia los códigos validos del primer textarea:
+    function limpiar(){
+       var arr_datos = getDatos();
+       var arr_datos_restantes = [];
+       var contenido_descartado ="";
+       var text1 = document.getElementById("texto_label_codigos_a_valorar");
+
+        //recogemos los datos que no han sido validados para dejarlos en el text area
+        for (let i = 0; i < arr_datos.length; i++) {
+            if(regexp_cp.test(arr_datos[i]) === false){
+                arr_datos_restantes.push(arr_datos[i]);
+            }
+        }
+        /*console.log(arr_datos_restantes);*/
+
+        //organizamos la estructura de los datos
+        for(let j = 0; j < arr_datos_restantes.length;j++){
+            contenido_descartado += arr_datos_restantes[j]+"\n";
+        }
+        //pintamos los datos si existen
+        if(arr_datos_restantes[0] != ""){
+            reset_alerts();
+            document.getElementById("codigos").value = contenido_descartado;
+            text1.innerHTML ="<label style='color: darkred'>Códigos DESCARTADOS.</label>";
+
+            /*console.error(arr_datos_restantes.length);*/
+
+            if(arr_datos_restantes.length !== 0){
+                reset_alerts();
+                mostrar_informacion("Se han encontrado elementos que no cumplen la regla.","warning");
+                contador_error++;
+            }
+
+        }else{
+            reset_alerts();
+            document.getElementById("codigos").value = contenido_descartado;
+            text1.innerHTML ="<label id='texto_label_codigos_a_valorar'>Códigos a valorar:</label>";
+        }
+
+    }
+
+
+    
+</script>  
+  <div class="container">
+      <h1>Validación de Códigos Postales:</h1>
+   <div class="jumbotron form-inline" style="background-color: lightpink">
+
+       <div>
+           <label id="texto_label_codigos_a_valorar">Códigos a valorar:</label>
+           <textarea id="codigos"></textarea>
+       </div>
+       <div>
+           <input class="btn btn-dark" type="button" value="validar" onclick="validar()">
+       </div>
+       <div>
+           <label id="texto_label_codigos_validos">Códigos Válidos:</label>
+           <textarea readonly  id="codigos_validos"></textarea>
+       </div>
+
+
+  </div>
+      <div class="mis_alerts">
+      <div class="hidden" name="mi_alert" id="info_div"><p name="mi_parrafo" id="info"></p></div>
+      <div class="hidden" name="mi_alert" id="success_div"><p name="mi_parrafo" id="success"></p></div>
+      <div class="hidden" name="mi_alert" id="danger_div"><p name="mi_parrafo" id="danger"></p></div>
+      <div class="hidden" name="mi_alert" id="warning_div"><p name="mi_parrafo" id="warning"></p></div>
+      </div>
+  </div>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+<footer class="page-footer font-small">
+    <div class="footer-copyright text-center py-3">
+        © 2021 Copyright
+        Isabel González Anzano
+    </div>
+</footer>

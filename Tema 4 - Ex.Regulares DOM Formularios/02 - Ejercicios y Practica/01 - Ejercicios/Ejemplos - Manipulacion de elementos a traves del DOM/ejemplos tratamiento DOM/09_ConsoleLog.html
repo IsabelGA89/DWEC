@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html><body>
+
+	<button onclick="recorrerBucle()">Recorer bucle</button>
+	<p>Párrafo 1</p>
+	<p>Párrafo 2</p>
+	<p>Párrafo 3</p>
+	<script>
+	function recorrerBucle() {
+		var etiquetas=document.getElementsByTagName("p");
+		for (var i=0; i<etiquetas.length;i++){
+            console.log("El contenido dle parrafo " + i + " es " + etiquetas[i].innerHTML+ "");
+        }
+		
+	}
+	</script>
+
+</body></html>

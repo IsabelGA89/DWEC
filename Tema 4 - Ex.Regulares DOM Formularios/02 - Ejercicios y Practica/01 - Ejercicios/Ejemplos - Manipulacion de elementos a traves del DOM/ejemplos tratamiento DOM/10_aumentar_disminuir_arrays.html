@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<header>
+<meta charset="utf-8"/>
+
+</header>
+
+<body>
+
+<script>
+	var dias=["lunes", "martes", "miercoles", "jueves", "viernes"];
+		
+	alert(dias);
+	
+	function semanaCompleta(){
+		dias.length=dias.length+2;
+		dias[dias.length-2]="sabado";
+		dias[dias.length-1]="domingo";
+		alert(dias);
+	}
+	
+	function semanaLaborables(){
+		dias.length=dias.length-2;
+		alert(dias);
+	}
+   
+</script>
+
+<br>
+<button onclick="semanaCompleta();">Semana completa</button>
+<button onclick="semanaLaborables();">Laborables</button>
+
+</body>
+</html>
