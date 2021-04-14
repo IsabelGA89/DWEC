@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" type="image/ico" sizes="32x32" href="favicon.ico">
+	<title>Parte B</title>
+</head>
+<body>
+	<div class="container jumbotron">
+		<h1>Práctica 2 - Isabel González Anzano</h1>
+<div class="alert-primary">
+			<p>
+			  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseA" aria-expanded="false" aria-controls="collapseA">
+			  <h2>Enunciado parte B</h2>
+			  </button>
+			</p>
+			<div class="collapse alert-primary" id="collapseB">
+			  <div class="card card-body  alert-primary">
+				<p>Realiza una aplicación en JavaScript que solicite datos del usuario a través del método prompt
+					del objeto Window. Los resultados de las distintas operaciones que se realizarán con dichos
+					datos se mostrarán en pantalla haciendo uso del método write del objeto document. 
+				</p>
+				<p>Datos a solicitar: 
+					<ul>
+						<li>introduzca su nombre y apellidos.</li>
+						<li>DIA de nacimiento.</li>
+						<li>MES de nacimiento.  </li>
+						<li>AÑO de nacimiento.   </li>
+					</ul>
+				</p>
+				<p> Una vez solicitados esos datos se mostrará la siguiente información: 
+					<ul>
+						<li> Buenos días XXXXX </li>
+						<li> Tu nombre tiene XX caracteres, incluidos espacios. </li>
+						<li> La primera letra A de tu nombre está en la posición: X  </li>
+						<li>La última letra A de tu nombre está en la posición: X
+						 (Para este apartado y el anterior. Si tu nombre no tiene letra A sustitúyela por
+						 otra vocal que si esté) 
+						</li>
+						<li>Tu nombre menos las 3 primeras letras es: XXXXXXXX </li>
+						<li> Tu nombre todo en mayúsculas es: XXXXXXXX
+						 (Para los apartados anteriores necesitaras hacer uso de los métodos y
+						 propiedades del objeto String) 
+						</li>
+						<li>Tu edad es: XX años. </li>	
+						<li>Naciste un feliz XX de XXXX del año XXXX.
+						(Para los apartados anteriores necesitarás hacer uso del objeto Date) 
+						</li>	
+						<li>El coseno de 180 es: XXXXXXXXXX </li>
+						<li> Ejemplo de número al azar: XXXXXXXXXX
+	 					(Para los apartados anteriores necesitarás hacer uso del objeto Math) </li>			
+					</ul>
+				</p>		
+			  </div>
+			</div>
+			</div>
+
+
+			<div class="alert-success">
+				<h2>Respuesta B:</h2>
+				<div>
+					<script>
+						//variable 1 = nombre completo, variable 2, 3 y 4 = día,mes,anyo
+						function validate_value(value,variable,type = 0){
+							var valid = false;
+							var today = new Date();
+
+							if(variable == 1  && value.length > 0 ){
+								valid = true;
+							}
+							if(variable == 2  && (value > 0) && (value < 32) ){
+								valid = true;
+							}
+							if(variable == 3  && (value > 0) && (value <= 12) ){
+								valid = true;
+							}
+							if( variable == 4 && (value > 0) && (value < 2020)){
+								valid = true;
+							}
+							return valid;
+						}
+
+						var is_valid_name = false;
+						var is_valid_day = false;
+						var is_valid_month = false;
+						var is_valid_year = false;
+
+						while(!is_valid_name){
+							var nombre_completo = prompt("Introduzca su nombre y apellidos, por favor:");
+							var is_valid_name = validate_value(nombre_completo,1,typeof nombre_completo);
+						}
+						while(!is_valid_day){
+							var dia_nac = parseInt(prompt("Introduce el día de tu nacimiento:"));
+							var is_valid_day = validate_value(dia_nac,2,typeof dia_nac);
+							//console.log(is_valid_day);
+						}
+						while(!is_valid_month){
+							var mes_nac = parseInt(prompt("Introduce el mes de tu nacimiento:"));
+							var is_valid_month = validate_value(mes_nac,3,typeof mes_nac);
+							//console.log(is_valid_day);
+						}
+						while(!is_valid_year){
+							var anyo_nac = parseInt(prompt("Introduce el año de tu nacimiento:"));
+							var is_valid_year = validate_value(anyo_nac,4,typeof anyo_nac);
+							//console.log(is_valid_day);
+						}
+				
+						//Gestión del nombre:
+							var separador = " "; // un espacio en blanco
+	    					var limite    = 3;
+							var arr_nombre = nombre_completo.split(separador,limite);
+							var nombre = arr_nombre[0];
+							var apellido1 = arr_nombre[1];
+							var apellido2 = arr_nombre[2];
+							var nombre_parseado_min = nombre_completo.toLowerCase();
+							var nombre_parseado_may = nombre_completo.toUpperCase();
+							var primera_letra_a = "A";
+							var hoy = new Date();
+							var fecha_nac = new Date(anyo_nac,(mes_nac-1),dia_nac);
+							var edad = hoy.getFullYear() - fecha_nac.getFullYear();
+							var diferenciaMeses = hoy.getMonth() - fecha_nac.getMonth()
+							if (diferenciaMeses < 0 || (diferenciaMeses === 0 && hoy.getDate() < fecha_nac.getDate())) {
+								   edad--
+								}
+		
+						//Generamos la salida:
+						var output = "";
+						output += "Buenos días "+ nombre_completo +"<br/>";
+						output += "Tu nombre completo (nombre y apellidos) tiene "+nombre_completo.length+ " caracteres, incluidos espacios.<br/>";
+						output += "Tu nombre tiene "+nombre.length+ " caracteres.<br/>";
+						output += "La primera letra A de tu nombre("+ nombre_completo+") está en la posición: "+ (nombre_parseado_may.indexOf(primera_letra_a)+1)+"<br/>";
+
+						output += "La última letra A de tu nombre("+ nombre_completo+") está en la posición: "+(nombre_parseado_may.lastIndexOf(primera_letra_a)+1)+"<br/>";
+
+						output += "Tu nombre("+ nombre+") menos las 3 primeras letras es: "+ nombre.substring(3)+"<br/>";
+						output += "Tu nombre todo en mayúsculas es: "+ nombre_parseado_may +"<br/>";
+						output += "Tu edad es: "+edad+" años.<br/>";
+						output += "Naciste un feliz "+fecha_nac.getDate()+" de "+(fecha_nac.getMonth()+1)+" del año "+fecha_nac.getFullYear()+"<br/>"
+						output += "El coseno de 180 es: "+Math.cos(180)+"<br/>";
+						output += "Ejemplo de número al azar: "+Math.round(Math.random()*100)+"<br/>";
+						
+						output += "<br/>";
+						document.write(output);
+					</script>
+					<div id = "salida_informacion"></div>
+				</div>
+			</div>
+</div>
+
+</div>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+<footer class="page-footer font-small">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        Isabel González Anzano
+    </div>
+</footer>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="/css/style.css">-->
+    <title>Basicos 3 - Letra DNI</title>
+</head>
+<header>
+    <h1>Basicos 3 - Letra DNI</h1>
+</header>
+<body>
+<div class="container">
+    <h1>Basicos 3 - Letra DNI</h1>
+    <div class="jumbotron">
+        <p>. El cálculo de la letra del Documento Nacional de Identidad (DNI) es un proceso matemático sencillo que se
+            basa en obtener el resto de la división
+            entera del número de DNI y el número 23. </p>
+        <p> A partir del resto de la división, se obtiene la letra seleccionándola dentro de un array de letras.
+            El array de letras es:</p>
+        <pre>
+            var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+        </pre>
+        <p>Por tanto si el resto de la división es 0, la letra del DNI es la T y si el resto es 3 la letra es la A. Con estos datos, elaborar un pequeño script que valide el DNI introducido por el usuario.
+            Puedes ayudarte de la clase Array o de la clase String.</p>
+        <div style="background-color: lightpink">
+            <script type="text/javascript">
+                var letras = ['T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E', 'T'];
+
+                var numero = prompt("Introduce tu número de DNI (sin la letra)");
+                var letra = prompt("Introduce la letra de tu DNI (en mayúsculas)");
+                letra = letra.toUpperCase();
+
+                if(numero < 0 || numero > 99999999) {
+                    alert("El número proporcionado no es válido");
+                }
+                else {
+                    var letraCalculada = letras[numero % 23];
+                    if(letraCalculada != letra) {
+                        alert("La letra o el número proporcionados no son correctos");
+                    }
+                    else {
+                        alert("El número de DNI y su letra son correctos");
+                    }
+                }
+
+            </script>
+
+        </div>
+
+    </div>
+</div>
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small">
+    <div class="footer-copyright text-center py-3">© 2021 Copyright
+        Isabel González Anzano
+    </div>
+</footer>

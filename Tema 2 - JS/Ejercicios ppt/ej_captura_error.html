@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<script type="text/javascript">
+			onerror=handleErr;
+			var txt="";
+			function handleErr(msg,url,l)
+			{
+				txt="Ha habido un error en esta página.\n\n";
+				txt+="Error: " + msg + "\n";
+				txt+="URL: " + url + "\n";
+				txt+="Línea: " + l + "\n\n";
+				txt+="Pulsa ok para continuar.\n\n";
+				alert(txt);
+				return true;
+			}
+			function mensaje()
+			{
+				adddlert("¡Bienvenido!");
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="View message" onclick="mensaje()" />
+	</body>
+</html>

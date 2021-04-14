@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon" type="image/ico" sizes="32x32" href="favicon.ico">
+	<title>Parte A</title>
+</head>
+<body>
+	<div class="container jumbotron">
+		<h1>Práctica 2 - Isabel González Anzano</h1>
+		<div class="alert-primary">
+			<p>
+			  <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseA" aria-expanded="false" aria-controls="collapseA">
+			  <h2>Enunciado parte A</h2>
+			  </button>
+			</p>
+			<div class="collapse alert-primary" id="collapseA">
+			  <div class="card card-body  alert-primary">
+			   <p>Haciendo uso de JavaScript mostrar:
+				<ul>
+					<li>La tabla de multiplicar del 6.</li>
+					<li>La tabla de sumar del 7.</li>
+					<li>La tabla de dividir del 8.</li>
+				</ul>
+				Cada tabla se generará utilizando un tipo de bucle distinto. 
+			</p>
+			<p>
+			 	Sabiendo que cuando desplazamos 1 bit a la derecha dividimos un entero por 2 y
+				cuando lo desplazamos a la izquierda estamos multiplicando por 2. Realizar y mostrar el
+				resultado de las siguientes operaciones empleando desplazamiento de bits: 
+				<ul>
+					<li>127 / 8 = </li>
+					<li>80 x 4 = </li>
+					<li>35 / 2 = </li>
+					<li>40 x 16 =  </li>
+				</ul>
+			</p>		
+			  </div>
+			</div>
+			</div>
+			<div class="alert-success">
+				<h2>Respuesta A:</h2>
+
+        		<div id="accordion">
+				  <div class="card">
+				    <div class="card-header" id="headingOne">
+				      <h5 class="mb-0">
+				        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" onclick="print_with_for(6)">
+				         Tabla de multiplicar del 6.
+				        </button>
+				      </h5>
+				    </div>
+
+				     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion" >
+				      <div class="card-body" id="for_iterator" >
+				        
+				      </div>
+				    </div>
+				  </div>
+
+				  <div class="card">
+				    <div class="card-header" id="headingTwo">
+				      <h5 class="mb-0">
+				        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="print_with_while(7)">
+				         Tabla de multiplicar del 7.
+				        </button>
+				      </h5>
+				    </div>
+				    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+				      <div class="card-body" id="while_iterator">
+				      
+				      </div>
+				    </div>
+				  </div>
+				  <div class="card">
+				    <div class="card-header" id="headingThree">
+				      <h5 class="mb-0">
+				        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" onclick="print_with_do_while(8)">
+				          Tabla de multiplicar del 8.
+				        </button>
+				      </h5>
+				    </div>
+				    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+				      <div class="card-body" id="do_while_iterator">
+				       
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				<div class="alert-success">
+					<script>
+						function desplazar_bit_izquierda(num1,num2){
+						let resultado = 0;
+						resultado = num1<<=num2;
+						
+						return resultado;
+					}
+
+					function desplazar_bit_derecha(num1,num2){
+						let resultado = 0;
+						resultado = num1>>=num2;
+						
+						return resultado;
+					}
+					var output = "";
+					output += "<div>";
+					output +=	"<ul>";
+					output += "<li>127 / 8 ="+desplazar_bit_derecha(127,3)+"</li>";
+					output +="<li>80 x 4 = "+desplazar_bit_izquierda(80,2)+"</li>";
+					output +="<li>35 / 2 = "+desplazar_bit_derecha(35,1)+"</li>";
+					output +="<li>40 x 16 = "+desplazar_bit_izquierda(40,4)+"</li>";
+					output +="</ul>";
+					output +="</div>";
+
+
+					output += "<br/>";
+					document.write(output);
+					</script>		
+					
+				</div>
+			</div>
+	<script src="./js_a.js"  type="text/javascript"></script>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
+
+<footer class="page-footer font-small">
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+        Isabel González Anzano
+    </div>
+</footer>

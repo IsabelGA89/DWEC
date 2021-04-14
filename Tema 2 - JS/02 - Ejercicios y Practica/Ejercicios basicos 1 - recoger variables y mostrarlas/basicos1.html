@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <!--referencia al archivo js-->
+   <!-- <script src="js/edificio.js" type="text/javascript"></script>-->
+    <title>Básicos 1</title>
+</head>
+<header>
+    <h1>Basicos 1</h1>
+</header>
+<body>
+<div class="container">
+    <h1>Basicos 1</h1>
+    <div class="jumbotron">
+        <p>Considera para los siguientes ejercicios que todavía no sabemos acceder al DOM (Document Object Model) mediante JavaScript:</p>
+        <ul>
+            <li>Para recoger datos de usuario, no podremos utilizar formularios, habrá que utilizar la función prompt.</li>
+            <li>Para mostrar datos por pantalla, tendremos que utilizar el método write del objeto document, que recibe como parámetro el html a insertar en la página). Ej: document.write (“Hola Mundo”);</li>
+        </ul>
+        <div style="background-color: lightpink">
+
+            <ol>
+                <div>
+                <li>Guardar tus datos nombre, edad, altura y casado (true o false) en variables.
+                    Muéstralas en la página web con saltos de línea.
+                    <script>
+                        var nombre = "Isabel";
+                        var edad = 31;
+                        var altura = 163;
+                        var casado = false;
+                        document.write("<hr />");
+                        document.write("Nombre: " + nombre);
+                        document.write("<br />");
+                        document.write("Edad: " + edad);
+                        document.write("<br />");
+                        document.write("Altura: " + altura);
+                        document.write("<br />");
+                        document.write("Casado: " + casado);
+                        document.write("<br />");
+                    </script>
+                </li>
+                </div>
+
+                <div>
+                    <li>Introduce tu nombre y edad por caja de texto y muestra en la página web el
+                        siguiente mensaje: “Hola nombre, así que tienes xx años”.
+                        <!--Nombre<input type="text" id="nombre" name="nombre">
+                        Edad<input type="text" id="edad" name="edad">-->
+                        <script>
+                            var nombre = prompt("Por favor escribe aquí tu nombre", "");
+                            var edad = prompt("Por favor escribe aquí tu edad", "");
+                            if(nombre == null || edad == null || nombre == "" ||edad == ""){
+                                document.write("<br/> No has introducido los datos correctos.");
+                            }else{
+                                document.write("<br/> Hola " + nombre + ", así que tienes " + edad + " años");
+                            }
+
+                            //el segundo parámetro de prompt nos sirve para sacar un valor predeterminado
+                            //Observa que si presionamos a cancelar en la ventana de inserción de nombre o edad, la variable recoge un null, que deberíamos tratar.
+
+                        </script>
+                    </li>
+                </div>
+
+                <div>
+                    <li>Introduce dos números mediante caja de texto y muestra en pantalla la suma y la multiplicación de ambos.
+                        <script>
+                            var n1 = prompt("N1 -Por favor escribe un número para la suma y la multiplicación", 0);
+                            var n2 = prompt("N2 -Por favor escribe otro número para la suma y la multiplicación", 0);
+                            if(n1 == null || n2 == null || n1 == 0 ||n2 == 0){
+                                document.write("<br/> No has introducido los datos correctos.");
+                            }else{
+                                document.write("<br/> Suma: "+(parseInt(n1) + parseInt(n2))+ " <br/>");
+                                document.write("Multiplicación: "+(n1*n2)+ " <br/>");
+                            }
+                        </script>
+                    </li>
+                </div>
+
+                <div>
+                    <li>Introduce un nombre y una nota mediante caja de texto. Si la nota es mayor que 4,
+                        se debe mostrar el texto “nombre está aprobado con un xx”
+                        <script>
+                            var nombre = prompt("EJ4- Introduce un nombre", "");
+                            var nota = prompt("EJ4- Introduce una nota", "");
+                            var parseNota = parseInt(nota);
+                            if( nombre == "" || nota == ""){
+                                document.write("<br/> No has introducido los datos correctos.");
+                            }else{
+                                if(parseNota > 4){
+                                    document.write("<br/>" + nombre + " está aprobado con un " + parseNota);
+                                }
+                            }
+                        </script>
+                    </li>
+                </div>
+
+                <div>
+                    <li>Introduce 2 números y muestra un texto por pantalla que diga cuál es el mayor.
+                        <script>
+                            var n1 = parseInt(prompt("EJ5- Introduce un número y te diré cuál es el mayor", ""));
+                            var n2 = parseInt(prompt("EJ5- Introduce otro número para comparar", ""));
+                            if( n1 == "" || n2 == ""){
+                                document.write("<br/> No has introducido los datos correctos.");
+                            }else{
+                                if(n1 > n2){
+                                    document.write("<br/> El número 1:"+n1+ " es mayor que el número 2: "+n2);
+                                }
+                                if(n1 == n2){
+                                    document.write("<br/> Ambos números son iguales");
+                                }
+                                if(n1 < n2){
+                                    document.write("<br/> El número 1:"+n1+ " es menor que el número 2: "+n2);
+                                }
+                            }
+                        </script>
+                    </li>
+                </div>
+
+                <div>
+                    <li>Introduce 3 números y muestra un texto por pantalla que diga cuál es el mayor.
+                        <script>
+                            var n1 = parseInt(prompt("EJ6- Introduce un número y te diré cuál es el mayor", ""));
+                            var n2 = parseInt(prompt("EJ6- Introduce otro número para comparar", ""));
+                            var n3 = parseInt(prompt("EJ6- Introduce el último número para comparar", ""));
+                            if( n1 == "" || n2 == "" || n3 == ""){
+                                document.write("<br/> No has introducido los datos correctos.");
+                            }else{
+                                if (n1>n2) {
+                                    if (n1 > n3) {
+                                        document.write(n1 + " es el mayor");
+                                    } else {
+                                        document.write(n3 + " es el mayor");
+                                    }
+                                } else {
+                                    if (n2 > n3) {
+                                        document.write(n2 + " es el mayor");
+                                    } else {
+                                        document.write(n3 + " es el mayor");
+                                    }
+                                }
+                            }
+                        </script>
+                    </li>
+                </div>
+            </ol>
+
+        </div>
+
+    </div>
+</div>
+<!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+</body>
+<!-- Footer -->
+<footer class="page-footer font-small">
+    <div class="footer-copyright text-center py-3">© 2021 Copyright
+        Isabel González Anzano
+    </div>
+</footer>
+<!-- Footer -->

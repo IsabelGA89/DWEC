@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ejercicio 4</title>
+</head>
+<body>
+	<div class="container">
+	<h2>Enunciado:</h2>
+		<p>Crear un array llamado meses y que almacene el nombre de los doce meses del año. Mostrar por pantalla los doce nombres utilizando la función alert().
+		</p>
+	</div>
+	<div><p id="to_write"></p></div>
+	<script type="text/javascript">
+		var arr_months = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+		alert(arr_months);
+		var container = document.getElementById("to_write");
+		container.innerHTML = "";
+		container.innerHTML += (arr_months);
+	</script>
+</body>
+</html>
